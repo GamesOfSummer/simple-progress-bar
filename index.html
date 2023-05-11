@@ -3,23 +3,69 @@
 
 <script>
     ( ( ) => {
-      const googleApiKey = 'KEY HERE';
-      const googleSheetId = '1q8iPjJ7n0uZ95T2hMShmsKBrQJxro_mpOLiONXhSq_0';
+      const googleApiKey = '';
+      const googleSheetId = '1UJGCMcRIkT9heFjez5Xlg-ksz9Bx2E00bNi-dnGyNac';
       const googleSheetName = 'Sheet1';
-      const googleSheetRange = 'B3';
       const googleSheetsApiUrl = 'https://sheets.googleapis.com/v4/spreadsheets';
-      const url = googleSheetsApiUrl +
+      let url = '';
+  
+
+
+// A3 - total raised ******************************
+        url = googleSheetsApiUrl +
         '/' +
         googleSheetId +
         '/values/' +
         googleSheetName +
-        '!' +
-        googleSheetRange;
+        '!A3';
       $.getJSON ( url, { key : googleApiKey }, function ( data ) {
-        console.log(data.values [ 0 ]);
+        console.log(data);
+       
+        $( '#totalRaised' ).text ( data.values [ 0 ] );
+        } );
+      
+// A6 order count ******************************
+url = googleSheetsApiUrl +
+        '/' +
+        googleSheetId +
+        '/values/' +
+        googleSheetName +
+        '!A6';
+      $.getJSON ( url, { key : googleApiKey }, function ( data ) {
+        console.log(data);
+       
+        $( '#orderCount' ).text ( data.values [ 0 ] );
+        } );
+// A9 - percent ******************************
+url = googleSheetsApiUrl +
+        '/' +
+        googleSheetId +
+        '/values/' +
+        googleSheetName +
+        '!A9';
+      $.getJSON ( url, { key : googleApiKey }, function ( data ) {
+        console.log(data);
+       
+        $( '#percent' ).text ( data.values [ 0 ] );
+        } );
+
+
+        // B3 - Progress bar ******************************
+url = googleSheetsApiUrl +
+        '/' +
+        googleSheetId +
+        '/values/' +
+        googleSheetName +
+        '!B3';
+      $.getJSON ( url, { key : googleApiKey }, function ( data ) {
+        console.log(data);
+       
         $( '#raised' ).width ( data.values [ 0 ] );
         } );
+
       } ) ( );
+
+
   </script>
 
 
@@ -41,7 +87,18 @@
 </style>
 
 
+Order Count
+<div id="orderCount"></div>
+<br/><br/>
 
+
+Total Raised
+<div id="totalRaised"></div>
+<br/><br/>
+
+Percent
+<div id="percent"></div>
+<br/><br/>
 
 <div id="progressbar">
     <div id="raised"></div>
@@ -50,3 +107,9 @@
 
 
 
+
+
+
+
+
+ 
