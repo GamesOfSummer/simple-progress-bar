@@ -1,0 +1,52 @@
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<script>
+    ( ( ) => {
+      const googleApiKey = 'KEY HERE';
+      const googleSheetId = '1q8iPjJ7n0uZ95T2hMShmsKBrQJxro_mpOLiONXhSq_0';
+      const googleSheetName = 'Sheet1';
+      const googleSheetRange = 'B3';
+      const googleSheetsApiUrl = 'https://sheets.googleapis.com/v4/spreadsheets';
+      const url = googleSheetsApiUrl +
+        '/' +
+        googleSheetId +
+        '/values/' +
+        googleSheetName +
+        '!' +
+        googleSheetRange;
+      $.getJSON ( url, { key : googleApiKey }, function ( data ) {
+        console.log(data.values [ 0 ]);
+        $( '#raised' ).width ( data.values [ 0 ] );
+        } );
+      } ) ( );
+  </script>
+
+
+<style>
+#progressbar {
+  background-color: black;
+  border-radius: 13px;
+  /* (height of inner div) / 2 + padding */
+  padding: 3px;
+}
+
+#raised {
+  background-color: orange;
+  width: 10%;
+  /* Adjust with JavaScript */
+  height: 20px;
+  border-radius: 10px;
+}
+</style>
+
+
+
+
+<div id="progressbar">
+    <div id="raised"></div>
+  </div>
+
+
+
+
